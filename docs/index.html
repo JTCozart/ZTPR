@@ -6,11 +6,11 @@
 
   <!-- Primary meta -->
   <title>Ztpr | Self-Hosted Reverse-Proxy Tunnels You Own End to End</title>
-  <meta name="description" content="Ztpr (Zero Trust Proxy Relay) gives you instant public HTTPS tunnels for any localhost service — self-hosted on your own server and domain. Free, open-source, runs on Linux. No cloud middleman." />
+  <meta name="description" content="Ztpr (Zero Trust Proxy Relay) gives you instant public HTTPS tunnels for any localhost service: self-hosted on your own server and domain. Free, open-source, runs on Linux. No cloud middleman." />
   <meta name="keywords" content="reverse proxy, tunnel, self-hosted tunnel, zero trust, https tunnel, expose localhost, lets encrypt wildcard, subdomain, blazor, open source" />
   <meta name="author" content="Jake Cozart" />
   <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#4f46e5" />
+  <meta name="theme-color" content="#00296c" />
   <link rel="canonical" href="https://ztpr.app/" />
 
   <!-- Open Graph -->
@@ -65,12 +65,11 @@
   </script>
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preload" href="fonts/Manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/Inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="lib/fontawesome/css/all.min.css" />
+  <link rel="stylesheet" href="theme.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -90,52 +89,25 @@
     a { color: var(--indigo); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* Nav */
-    nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 2rem; border-bottom: 1px solid var(--border);
-      position: sticky; top: 0; background: rgba(255,255,255,.95);
-      backdrop-filter: blur(8px); z-index: 100;
-    }
-    .nav-brand {
-      display: flex; align-items: center; gap: .6rem;
-      font-weight: 700; font-size: 1.1rem; color: var(--dark); text-decoration: none;
-    }
+    
+    
     .zt-badge {
       width: 32px; height: 32px; border-radius: 8px;
       background: var(--indigo); color: #fff;
       display: flex; align-items: center; justify-content: center;
       font-weight: 800; font-size: .85rem; letter-spacing: -.5px; flex-shrink: 0;
     }
-    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
-    .nav-links a { color: var(--gray); font-size: .9rem; font-weight: 500; }
-    .nav-links a:hover { color: var(--dark); text-decoration: none; }
-    .btn-nav {
-      background: var(--indigo); color: #fff !important;
-      padding: .45rem 1rem; border-radius: 8px; font-weight: 600;
-    }
-    .btn-nav:hover { background: var(--indigo-d); }
-    .nav-toggle {
-      display: none; background: none; border: none; cursor: pointer;
-      padding: .35rem; color: var(--dark); font-size: 1.35rem; line-height: 1;
-    }
-    .nav-mobile {
-      display: none; position: absolute; top: 100%; left: 0; right: 0;
-      background: #fff; border-bottom: 1px solid var(--border);
-      padding: .75rem 1.5rem 1rem; flex-direction: column;
-      box-shadow: 0 6px 16px rgba(0,0,0,.08);
-    }
-    .nav-mobile.open { display: flex; }
-    .nav-mobile a {
-      color: var(--gray); font-size: .95rem; font-weight: 500;
-      padding: .65rem .25rem; border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; gap: .5rem;
-    }
-    .nav-mobile a:hover { color: var(--dark); text-decoration: none; }
-    .nav-mobile .btn-nav {
-      margin-top: .5rem; border-bottom: none; border-radius: 8px;
-      padding: .65rem 1rem; justify-content: center;
-    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     /* Hero */
     .hero {
@@ -195,7 +167,7 @@
     .term .c-dim    { color: #64748b; }
     .term .c-url    { color: #fcd34d; }
 
-    /* App mock — mirrors the Blazor layout: dark sidebar + main content */
+    /* App mock, mirrors the Blazor layout: dark sidebar + main content */
     .ui-mock { display: flex; min-height: 320px; background:#fff; }
     .ui-side {
       width: 190px; flex-shrink: 0; background: #1b2433;
@@ -276,55 +248,39 @@
     .cta-section h2 { color: #fff; margin-bottom: 1rem; }
     .cta-section p { color: #94a3b8; max-width: 520px; margin: 0 auto 2rem; }
 
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--border); padding: 2rem;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 1rem; color: var(--gray); font-size: .85rem;
-    }
-    footer a { color: var(--gray); }
+    
+    
 
     @media (max-width: 640px) {
-      nav { padding: 1rem; }
-      .nav-links { display: none; }
-      .nav-toggle { display: block; }
+      
+      
+      
       .ui-stat-row { flex-wrap: wrap; }
       .ui-stat { min-width: 45%; }
     }
   </style>
+  <link rel="stylesheet" href="site.css" />
 </head>
 <body>
 
-<nav>
-  <a class="nav-brand" href="#">
-    <div class="zt-badge">ZT</div>
-    Ztpr
-  </a>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="getting-started.html">Getting Started</a>
-    <a href="user-guide.html">User Guide</a>
-    <a href="https://github.com/JTCozart/ZTPR" target="_blank" rel="noopener noreferrer">GitHub</a>
-    <a href="https://github.com/JTCozart/ZTPR/releases/latest" class="btn-nav" target="_blank" rel="noopener noreferrer">
-      <i class="fa-solid fa-download"></i> Download
-    </a>
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html"><span class="zt-badge">ZT</span> <span>Ztpr</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="getting-started.html">Getting Started</a>
+      <a href="user-guide.html">User Guide</a>
+      <a href="https://github.com/JTCozart/ZTPR">GitHub</a>
+      <a class="nav-cta" href="https://github.com/JTCozart/ZTPR/releases/latest">Download</a>
+    </nav>
   </div>
-  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
-    <i class="fa-solid fa-bars"></i>
-  </button>
-  <div class="nav-mobile" role="menu">
-    <a href="index.html"><i class="fa-solid fa-house fa-fw"></i> Home</a>
-    <a href="getting-started.html"><i class="fa-solid fa-rocket fa-fw"></i> Getting Started</a>
-    <a href="user-guide.html"><i class="fa-solid fa-book fa-fw"></i> User Guide</a>
-    <a href="https://github.com/JTCozart/ZTPR" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github fa-fw"></i> GitHub</a>
-    <a href="https://github.com/JTCozart/ZTPR/releases/latest" class="btn-nav" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-download"></i> Download</a>
-  </div>
-</nav>
+</header>
 
 <!-- Hero -->
 <section class="hero">
   <div class="hero-tag">Free &amp; Open Source &nbsp;·&nbsp; Self-Hosted</div>
-  <h1>Public HTTPS for localhost —<br><span>without the middleman</span></h1>
+  <h1>Public HTTPS for localhost,<br><span>without the middleman</span></h1>
   <p>Ztpr is a Zero Trust Proxy Relay: public HTTPS tunnels you run on your own server and domain. Friendly subdomains, automatic wildcard TLS, and an admin UI. Your traffic never touches a third party.</p>
   <div class="hero-cta">
     <a href="getting-started.html" class="btn-primary">
@@ -415,7 +371,7 @@
       <div class="feature-card">
         <div class="feature-icon"><i class="fa-solid fa-lock"></i></div>
         <h3>Automatic wildcard HTTPS</h3>
-        <p>A single Let's Encrypt wildcard cert (<code>*.tun.example.com</code>) via DNS-01 covers every tunnel — issued hands-free when you connect Amazon Route 53, or with a guided manual wizard for any DNS provider. TLS terminates at the relay; your service sees plain HTTP.</p>
+        <p>A single Let's Encrypt wildcard cert (<code>*.tun.example.com</code>) via DNS-01 covers every tunnel: issued hands-free when you connect Amazon Route 53, or with a guided manual wizard for any DNS provider. TLS terminates at the relay; your service sees plain HTTP.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon"><i class="fa-solid fa-user-shield"></i></div>
@@ -425,7 +381,7 @@
       <div class="feature-card">
         <div class="feature-icon"><i class="fa-solid fa-gauge-high"></i></div>
         <h3>Operator visibility</h3>
-        <p>A Blazor admin UI shows every user, who holds which subdomain, and every active tunnel — with one-click disconnect and per-key limits.</p>
+        <p>A Blazor admin UI shows every user, who holds which subdomain, and every active tunnel: with one-click disconnect and per-key limits.</p>
       </div>
     </div>
   </div>
@@ -451,63 +407,73 @@
       <div class="step">
         <div class="step-num">3</div>
         <h3>Share the URL</h3>
-        <p>The relay assigns a subdomain and forwards public HTTPS to your local service — valid for up to four hours, released when you're done.</p>
+        <p>The relay assigns a subdomain and forwards public HTTPS to your local service: valid for up to four hours, released when you're done.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section">
-  <h2>Run your own tunnels today</h2>
-  <p>Free, open source, and completely self-hosted. Stand up the relay and open your first tunnel in minutes.</p>
-  <a href="getting-started.html" class="btn-primary" style="display:inline-flex">
-    <i class="fa-solid fa-rocket"></i> Read the Getting Started guide
-  </a>
-</section>
-
-<footer>
-  <div>
-    <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem">
-      <div class="zt-badge" style="width:24px;height:24px;font-size:.65rem;border-radius:5px">ZT</div>
-      <strong style="color:#0f172a">Ztpr</strong>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-cta">
+      <h2>Run your own tunnels on your own domain.</h2>
+      <a class="btn btn-primary" href="getting-started.html">Read the Getting Started guide</a>
     </div>
-    <span>GPL-3.0 License &middot; &copy; 2026 Jake Cozart</span>
-  </div>
-  <div style="display:flex;gap:1.5rem;flex-wrap:wrap">
-    <a href="getting-started.html"><i class="fa-solid fa-rocket"></i> Getting Started</a>
-    <a href="user-guide.html"><i class="fa-solid fa-book"></i> User Guide</a>
-    <a href="https://github.com/JTCozart/ZTPR" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
-    <a href="https://github.com/JTCozart/ZTPR/releases" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-tag"></i> Releases</a>
-    <a href="https://github.com/JTCozart/ZTPR/blob/master/NOTICE" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-lines"></i> Notices</a>
-    <a href="https://linktr.ee/jtczrt" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-tree"></i> Linktree</a>
+
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html"><span class="zt-badge">ZT</span> <span>Ztpr</span></a>
+        <p>Self-hosted public HTTPS tunnels for any localhost service, on your own server and domain. GPL-3.0 licensed.</p>
+      </div>
+
+      <nav class="footer-col" aria-label="Ztpr">
+        <h3>Ztpr</h3>
+        <ul>
+          <li><a href="getting-started.html">Getting Started</a></li>
+          <li><a href="user-guide.html">User Guide</a></li>
+          <li><a href="https://github.com/JTCozart/ZTPR/releases">Releases</a></li>
+          <li><a href="https://github.com/JTCozart/ZTPR/blob/master/NOTICE">Notices</a></li>
+          <li><a href="https://linktr.ee/jtczrt">Linktree</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Cozart Consulting">
+        <h3>Cozart Consulting</h3>
+        <ul>
+          <li><a href="https://cozartconsulting.com/">Custom software</a></li>
+          <li><a href="https://cozartconsulting.com/#work">More projects</a></li>
+          <li><a href="https://github.com/JTCozart">GitHub</a></li>
+          <li><a href="https://cozartconsulting.com/#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; <span id="year">2026</span> Ztpr. Designed and built by <a href="https://cozartconsulting.com/">Cozart Consulting</a>, Knoxville, TN.</span>
+      <span class="theme-credit">Theme adapted from <a href="https://www.figma.com/community/file/1479561357645494407">Housefix</a> by Al Razi Siam, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</span>
+    </div>
   </div>
 </footer>
 
 <script>
   (function () {
-    var toggle = document.querySelector('.nav-toggle');
-    var menu   = document.querySelector('.nav-mobile');
+    var toggle = document.getElementById('navToggle');
+    var links = document.getElementById('navLinks');
+    if (!toggle || !links) return;
     toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open);
-      toggle.querySelector('i').className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+      var open = links.classList.toggle('open');
+      toggle.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
-    document.addEventListener('click', function (e) {
-      if (!e.target.closest('nav')) {
-        menu.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.querySelector('i').className = 'fa-solid fa-bars';
-      }
-    });
-    menu.querySelectorAll('a').forEach(function (a) {
+    links.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', function () {
-        menu.classList.remove('open');
+        links.classList.remove('open');
+        toggle.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
-        toggle.querySelector('i').className = 'fa-solid fa-bars';
       });
     });
   })();
+  document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>

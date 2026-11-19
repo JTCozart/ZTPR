@@ -1,0 +1,61 @@
+/* Ztpr pages on the shared Cozart marketing theme (theme.css). Loaded after each page's own CSS. */
+:root {
+  --indigo: var(--mk-primary);
+  --indigo-d: var(--mk-primary-hover);
+  --dark: var(--mk-navy);
+  --gray: var(--mk-muted);
+  --light: var(--mk-tint);
+  --border: var(--mk-border);
+  --radius: var(--mk-radius);
+  --mono: var(--mk-font-mono);
+}
+body { font-family: var(--mk-font-body); color: var(--mk-text); }
+h1, h2, h3, h4 { font-family: var(--mk-font-heading); color: var(--mk-navy); letter-spacing: -0.02em; }
+.site-footer h2, .site-footer h3 { color: #fff; }
+.zt-badge { border-radius: var(--mk-radius); }
+.brand .zt-badge { width: 36px; height: 36px; }
+
+/* Home hero */
+.hero {
+  text-align: center;
+  padding: 110px 24px 90px;
+  background:
+    radial-gradient(70% 90% at 85% 10%, rgba(33, 150, 243, 0.55), transparent 60%),
+    radial-gradient(60% 80% at 0% 100%, rgba(25, 118, 210, 0.45), transparent 60%),
+    linear-gradient(135deg, #00296c 0%, #003a91 55%, #0b5cc4 100%);
+}
+.hero h1 { color: #fff; }
+.hero h1 span { color: #8cc8ff; }
+.hero > p { color: rgba(255, 255, 255, 0.88); }
+.hero-tag { background: transparent !important; color: #cfe5ff !important; border: 1px solid rgba(255, 255, 255, 0.35) !important; border-radius: var(--mk-radius) !important; }
+.hero .btn-primary, .cta-section .btn-primary, .btn-primary, .btn-secondary { border-radius: var(--mk-radius); font-family: var(--mk-font-heading); font-weight: 700; }
+.hero .btn-primary { background: #fff; color: var(--mk-navy); }
+.hero .btn-primary:hover { background: var(--mk-tint); }
+.hero .btn-secondary { background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, 0.7); }
+.hero .btn-secondary:hover { background: #fff; color: var(--mk-navy); }
+.ui-preview { border-radius: var(--mk-radius-lg); box-shadow: 0 30px 70px rgba(0, 14, 36, 0.35); text-align: left; }
+
+/* Sections */
+.section-tag { color: var(--mk-primary); font-family: var(--mk-font-heading); font-size: 1.05rem; font-weight: 600; letter-spacing: -0.01em; text-transform: none; }
+.feature-card, .step { border-radius: var(--mk-radius); }
+.feature-icon { background: var(--mk-primary) !important; color: #fff !important; border-radius: var(--mk-radius) !important; }
+.cta-section { background: var(--mk-tint); }
+.cta-section h2 { color: var(--mk-navy); }
+.cta-section p { color: var(--mk-muted); }
+
+/* Guide pages */
+.page-head {
+  padding: 80px 24px 70px;
+  border-bottom: 0;
+  background:
+    radial-gradient(70% 90% at 85% 10%, rgba(33, 150, 243, 0.55), transparent 60%),
+    linear-gradient(135deg, #00296c 0%, #003a91 55%, #0b5cc4 100%);
+}
+.page-head h1 { color: #fff; }
+.page-head p { color: rgba(255, 255, 255, 0.85); }
+.page-head .eyebrow { color: #cfe5ff; font-family: var(--mk-font-heading); font-size: 1.05rem; font-weight: 600; text-transform: none; letter-spacing: 0; }
+.callout { border-radius: 0 var(--mk-radius) var(--mk-radius) 0; background: var(--mk-tint); border-left-color: var(--mk-primary-bright); }
+.track-head .pill { border-radius: var(--mk-radius); }
+.next a { border-radius: var(--mk-radius); }
+pre { border-radius: var(--mk-radius); background: var(--mk-ink); }
+code { border-radius: 3px; }

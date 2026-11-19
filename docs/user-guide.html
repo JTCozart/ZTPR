@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>User Guide | Ztpr</title>
   <meta name="description" content="Ztpr user guide: self-hosting on Linux, automatic wildcard HTTPS via Let's Encrypt, email, two-factor auth, the audit log, runtime settings, and the client CLI reference." />
-  <meta name="theme-color" content="#4f46e5" />
+  <meta name="theme-color" content="#00296c" />
   <link rel="canonical" href="https://ztpr.app/user-guide.html" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preload" href="fonts/Manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/Inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="lib/fontawesome/css/all.min.css" />
+  <link rel="stylesheet" href="theme.css" />
   <style>
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     :root {
@@ -27,21 +27,21 @@
     th, td { text-align:left; padding:.55rem .7rem; border-bottom:1px solid var(--border); }
     th { background:var(--light); font-weight:600; }
 
-    nav { display:flex; align-items:center; justify-content:space-between; padding:1rem 2rem; border-bottom:1px solid var(--border); position:sticky; top:0; background:rgba(255,255,255,.95); backdrop-filter:blur(8px); z-index:100; }
-    .nav-brand { display:flex; align-items:center; gap:.6rem; font-weight:700; font-size:1.1rem; color:var(--dark); }
-    .nav-brand:hover { text-decoration:none; }
+    
+    
+    
     .zt-badge { width:32px; height:32px; border-radius:8px; background:var(--indigo); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:.85rem; flex-shrink:0; }
-    .nav-links { display:flex; gap:1.5rem; align-items:center; }
-    .nav-links a { color:var(--gray); font-size:.9rem; font-weight:500; }
-    .nav-links a:hover { color:var(--dark); text-decoration:none; }
-    .btn-nav { background:var(--indigo); color:#fff !important; padding:.45rem 1rem; border-radius:8px; font-weight:600; }
-    .btn-nav:hover { background:var(--indigo-d); }
-    .nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:.35rem; color:var(--dark); font-size:1.35rem; line-height:1; }
-    .nav-mobile { display:none; position:absolute; top:100%; left:0; right:0; background:#fff; border-bottom:1px solid var(--border); padding:.75rem 1.5rem 1rem; flex-direction:column; box-shadow:0 6px 16px rgba(0,0,0,.08); }
-    .nav-mobile.open { display:flex; }
-    .nav-mobile a { color:var(--gray); font-size:.95rem; font-weight:500; padding:.65rem .25rem; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:.5rem; }
-    .nav-mobile a:hover { color:var(--dark); text-decoration:none; }
-    .nav-mobile .btn-nav { margin-top:.5rem; border-bottom:none; border-radius:8px; padding:.65rem 1rem; justify-content:center; }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     .page-head { background:linear-gradient(160deg,#eef2ff 0%,#fff 70%); padding:3rem 2rem 2rem; text-align:center; border-bottom:1px solid var(--border); }
     .page-head .eyebrow { color:var(--indigo); font-weight:700; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; }
@@ -64,33 +64,27 @@
     .callout.tip { border-color:#16a34a; background:#f0fdf4; }
     .callout.warn { border-color:#d97706; background:#fffbeb; }
 
-    footer { border-top:1px solid var(--border); padding:2rem; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; color:var(--gray); font-size:.85rem; }
-    footer a { color:var(--gray); }
-    @media (max-width:820px){ .layout{grid-template-columns:1fr;} .toc{display:none;} .nav-links{display:none;} .nav-toggle{display:block;} }
+    
+    
+    @media (max-width:820px){ .layout{grid-template-columns:1fr;} .toc{display:none;}   }
   </style>
+  <link rel="stylesheet" href="site.css" />
 </head>
 <body>
 
-<nav>
-  <a class="nav-brand" href="index.html"><div class="zt-badge">ZT</div> Ztpr</a>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="getting-started.html">Getting Started</a>
-    <a href="user-guide.html">User Guide</a>
-    <a href="https://github.com/JTCozart/ZTPR" target="_blank" rel="noopener noreferrer">GitHub</a>
-    <a href="https://github.com/JTCozart/ZTPR/releases/latest" class="btn-nav" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-download"></i> Download</a>
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html"><span class="zt-badge">ZT</span> <span>Ztpr</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="getting-started.html">Getting Started</a>
+      <a href="user-guide.html">User Guide</a>
+      <a href="https://github.com/JTCozart/ZTPR">GitHub</a>
+      <a class="nav-cta" href="https://github.com/JTCozart/ZTPR/releases/latest">Download</a>
+    </nav>
   </div>
-  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
-    <i class="fa-solid fa-bars"></i>
-  </button>
-  <div class="nav-mobile" role="menu">
-    <a href="index.html"><i class="fa-solid fa-house fa-fw"></i> Home</a>
-    <a href="getting-started.html"><i class="fa-solid fa-rocket fa-fw"></i> Getting Started</a>
-    <a href="user-guide.html"><i class="fa-solid fa-book fa-fw"></i> User Guide</a>
-    <a href="https://github.com/JTCozart/ZTPR" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github fa-fw"></i> GitHub</a>
-    <a href="https://github.com/JTCozart/ZTPR/releases/latest" class="btn-nav" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-download"></i> Download</a>
-  </div>
-</nav>
+</header>
 
 <div class="page-head">
   <div class="eyebrow">User Guide</div>
@@ -118,14 +112,14 @@
     <p>Point a wildcard and the app host at your server's static IP:</p>
     <pre><code>*.tun.example.com   A   &lt;static-ip&gt;
 app.example.com     A   &lt;static-ip&gt;</code></pre>
-    <p>For request routing, Ztpr tracks subdomain reservations internally and routes purely by the <code>Host</code> header — it never needs your DNS provider at request time. For <strong>HTTPS certificate issuance</strong> it can optionally manage the DNS-01 TXT records for you via <strong>Amazon Route 53</strong> (see <a href="#https-tls">HTTPS &amp; TLS</a>); otherwise you add them by hand.</p>
+    <p>For request routing, Ztpr tracks subdomain reservations internally and routes purely by the <code>Host</code> header: it never needs your DNS provider at request time. For <strong>HTTPS certificate issuance</strong> it can optionally manage the DNS-01 TXT records for you via <strong>Amazon Route 53</strong> (see <a href="#https-tls">HTTPS &amp; TLS</a>); otherwise you add them by hand.</p>
 
     <h3>Quick install (from a release)</h3>
-    <p>Each tagged release publishes a self-contained Linux bundle — no .NET runtime required on the box.</p>
+    <p>Each tagged release publishes a self-contained Linux bundle: no .NET runtime required on the box.</p>
     <pre><code># Replace OWNER/REPO with your GitHub repository
 curl -fsSL https://github.com/OWNER/REPO/releases/latest/download/ztpr-linux-x64.tar.gz | tar xz
 sudo ./ztpr/install.sh</code></pre>
-    <p><code>deploy/install.sh</code> creates the <code>ztpr</code> system user, installs to <code>/opt/ztpr</code>, writes the systemd unit, and starts the service. You then finish setup — domains and HTTPS — from the admin UI (see <a href="#settings">Admin settings</a>), so there's no config file to hand-edit.</p>
+    <p><code>deploy/install.sh</code> creates the <code>ztpr</code> system user, installs to <code>/opt/ztpr</code>, writes the systemd unit, and starts the service. You then finish setup: domains and HTTPS: from the admin UI (see <a href="#settings">Admin settings</a>), so there's no config file to hand-edit.</p>
     <pre><code>sudo systemctl status ztpr
 journalctl -u ztpr -f</code></pre>
 
@@ -148,11 +142,11 @@ sudo systemctl enable --now ztpr</code></pre>
     <p>The SQLite database (<code>ztpr.db</code>) and issued certificates live in the working directory and persist across restarts.</p>
 
     <h2 id="https-tls">HTTPS / Let's Encrypt (wildcard via DNS-01)</h2>
-    <p>TLS uses a single <strong>wildcard certificate</strong> (<code>*.tun.example.com</code>) from Let's Encrypt, obtained with the <strong>Certes</strong> ACME client. One cert covers every random tunnel subdomain — no per-subdomain issuance and no rate-limit worries. SSL terminates at the relay; your local service only ever sees plain HTTP.</p>
+    <p>TLS uses a single <strong>wildcard certificate</strong> (<code>*.tun.example.com</code>) from Let's Encrypt, obtained with the <strong>Certes</strong> ACME client. One cert covers every random tunnel subdomain: no per-subdomain issuance and no rate-limit worries. SSL terminates at the relay; your local service only ever sees plain HTTP.</p>
     <p>Wildcards are validated with a <strong>DNS-01</strong> challenge (a TXT record). There are two ways to satisfy it:</p>
     <ul>
-      <li><strong>Automatic — Amazon Route 53.</strong> Connect a hosted zone under <strong>Admin &rarr; Settings &rarr; DNS &amp; Route 53</strong> with a least-privilege IAM access key (the tab shows a copy-paste IAM policy scoped to just that zone). On issue/renew, the relay writes the TXT records, waits for propagation, and validates automatically — with a live progress bar. Credentials are stored <strong>encrypted at rest</strong>.</li>
-      <li><strong>Manual — any DNS provider.</strong> The wizard shows the TXT record(s) to add yourself, then you click <strong>Verify &amp; issue</strong>.</li>
+      <li><strong>Automatic: Amazon Route 53.</strong> Connect a hosted zone under <strong>Admin &rarr; Settings &rarr; DNS &amp; Route 53</strong> with a least-privilege IAM access key (the tab shows a copy-paste IAM policy scoped to just that zone). On issue/renew, the relay writes the TXT records, waits for propagation, and validates automatically: with a live progress bar. Credentials are stored <strong>encrypted at rest</strong>.</li>
+      <li><strong>Manual: any DNS provider.</strong> The wizard shows the TXT record(s) to add yourself, then you click <strong>Verify &amp; issue</strong>.</li>
     </ul>
     <ol>
       <li>In <strong>Admin &rarr; Settings &rarr; General</strong>, toggle <strong>HTTPS</strong> on and restart. The relay listens on <strong>443</strong> (and <strong>80</strong> for the app-host redirect). Port 443 must be reachable.</li>
@@ -165,10 +159,10 @@ sudo systemctl enable --now ztpr</code></pre>
       </li>
     </ol>
     <div class="callout tip"><i class="fa-solid fa-lightbulb"></i> Do a first run with <strong>staging</strong> on to confirm the flow (staging certs are untrusted by browsers), then switch staging off and re-run for the real certificate.</div>
-    <div class="callout warn"><i class="fa-solid fa-triangle-exclamation"></i> Certs last ~90 days, so <strong>re-run the wizard before expiry</strong> — the TXT values change each time. With Route 53 connected this is one click; otherwise add the new records by hand. The Settings page shows the current cert and days remaining.</div>
+    <div class="callout warn"><i class="fa-solid fa-triangle-exclamation"></i> Certs last ~90 days, so <strong>re-run the wizard before expiry</strong>: the TXT values change each time. With Route 53 connected this is one click; otherwise add the new records by hand. The Settings page shows the current cert and days remaining.</div>
 
     <h2 id="settings">Admin settings (runtime config)</h2>
-    <p>Operational settings live in the database and are edited from <strong>Admin &rarr; Settings</strong> — no need to touch <code>appsettings.json</code>. Changes apply at runtime.</p>
+    <p>Operational settings live in the database and are edited from <strong>Admin &rarr; Settings</strong>: no need to touch <code>appsettings.json</code>. Changes apply at runtime.</p>
     <table>
       <tr><th>Setting</th><th>Meaning</th></tr>
       <tr><td>Base domain</td><td>Wildcard base for tunnels. Tunnels become <code>&lt;sub&gt;.&lt;base&gt;</code>.</td></tr>
@@ -198,21 +192,21 @@ sudo systemctl enable --now ztpr</code></pre>
     <h2 id="accounts">Accounts: 2FA, passwords &amp; recovery</h2>
 
     <h3>Two-factor authentication (2FA)</h3>
-    <p>Any signed-in user can enable TOTP-based 2FA from <strong>Security</strong> (in the sidebar). Scan the QR code with an authenticator app (Google Authenticator, Microsoft Authenticator, 1Password, …) or enter the key by hand, then confirm with a 6-digit code. On enabling, you're shown <strong>one-time backup codes</strong> — save them; they're the only way in if you lose your authenticator. From the same page you can regenerate backup codes or disable 2FA (a current code is required to disable).</p>
+    <p>Any signed-in user can enable TOTP-based 2FA from <strong>Security</strong> (in the sidebar). Scan the QR code with an authenticator app (Google Authenticator, Microsoft Authenticator, 1Password, …) or enter the key by hand, then confirm with a 6-digit code. On enabling, you're shown <strong>one-time backup codes</strong>: save them; they're the only way in if you lose your authenticator. From the same page you can regenerate backup codes or disable 2FA (a current code is required to disable).</p>
     <div class="callout warn"><i class="fa-solid fa-triangle-exclamation"></i> After <strong>5 failed backup-code attempts</strong> the account is <strong>locked</strong> and can only be unlocked by an admin (Admin &rarr; Users). This is distinct from an admin <em>block</em>.</div>
 
     <h3>Change password</h3>
     <p>Signed-in users change their password from the <strong>Security</strong> page (current password required).</p>
 
     <h3>Forgot password</h3>
-    <p>If <a href="#email">email</a> is configured, the login page offers <strong>Forgot password?</strong>. Entering an account email sends a time-limited reset link. <strong>Without email configured, self-service reset is unavailable</strong> — an admin must assist.</p>
+    <p>If <a href="#email">email</a> is configured, the login page offers <strong>Forgot password?</strong>. Entering an account email sends a time-limited reset link. <strong>Without email configured, self-service reset is unavailable</strong>: an admin must assist.</p>
 
     <h2 id="audit">Audit log</h2>
-    <p>Admins get a searchable security <strong>audit log</strong> at <strong>Admin &rarr; Audit log</strong>. It records sign-ins (success and failure), tunnel starts, API-key / user / invite creation and deletion, blocks/unblocks, and email-confirmation and password-reset events — each with the associated user and IP where known. Filter by event type and date range.</p>
+    <p>Admins get a searchable security <strong>audit log</strong> at <strong>Admin &rarr; Audit log</strong>. It records sign-ins (success and failure), tunnel starts, API-key / user / invite creation and deletion, blocks/unblocks, and email-confirmation and password-reset events: each with the associated user and IP where known. Filter by event type and date range.</p>
     <p>Every event is also mirrored to the host journal (<code>journalctl -u ztpr</code>). To stay within the server's limited storage the database log is capped (≈1&nbsp;GiB); once full, the oldest entries are purged automatically, so export anything you need to retain long-term.</p>
 
     <h2 id="configuration">appsettings reference</h2>
-    <p>You rarely need to edit this — domains, TLS, and limits are managed at runtime (above). The file mainly holds the database location and optional bootstrap defaults:</p>
+    <p>You rarely need to edit this: domains, TLS, and limits are managed at runtime (above). The file mainly holds the database location and optional bootstrap defaults:</p>
     <pre><code>"ConnectionStrings": {
   "Sqlite": "Data Source=ztpr.db"
 }</code></pre>
@@ -244,70 +238,72 @@ sudo systemctl enable --now ztpr</code></pre>
     </ul>
 
     <h3>Trust model: the operator can see traffic</h3>
-    <p>TLS is <strong>terminated at the relay</strong> — it decrypts inbound HTTPS with the wildcard certificate and forwards <strong>plain HTTP</strong> over the tunnel to your client. So whoever runs the relay can, in principle, observe the <strong>decrypted contents</strong> of every tunnel. Treat the relay operator as <strong>trusted</strong>.</p>
+    <p>TLS is <strong>terminated at the relay</strong>: it decrypts inbound HTTPS with the wildcard certificate and forwards <strong>plain HTTP</strong> over the tunnel to your client. So whoever runs the relay can, in principle, observe the <strong>decrypted contents</strong> of every tunnel. Treat the relay operator as <strong>trusted</strong>.</p>
     <div class="callout warn"><i class="fa-solid fa-triangle-exclamation"></i> There is <strong>no end-to-end encryption</strong> that hides traffic from the operator. That would require TLS to terminate on the client (SNI passthrough, with the client holding the cert/key), which is not implemented. If you need confidentiality from the host, run the relay on infrastructure you control.</div>
   </article>
 </div>
 
-<footer>
-  <div>
-    <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem">
-      <div class="zt-badge" style="width:24px;height:24px;font-size:.65rem;border-radius:5px">ZT</div>
-      <strong style="color:#0f172a">Ztpr</strong>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-cta">
+      <h2>Run your own tunnels on your own domain.</h2>
+      <a class="btn btn-primary" href="getting-started.html">Read the Getting Started guide</a>
     </div>
-    <span>GPL-3.0 License &middot; &copy; 2026 Jake Cozart</span>
-  </div>
-  <div style="display:flex;gap:1.5rem;flex-wrap:wrap">
-    <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-    <a href="getting-started.html"><i class="fa-solid fa-rocket"></i> Getting Started</a>
-    <a href="https://github.com/JTCozart/ZTPR" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
-    <a href="https://linktr.ee/jtczrt" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-tree"></i> Linktree</a>
+
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html"><span class="zt-badge">ZT</span> <span>Ztpr</span></a>
+        <p>Self-hosted public HTTPS tunnels for any localhost service, on your own server and domain. GPL-3.0 licensed.</p>
+      </div>
+
+      <nav class="footer-col" aria-label="Ztpr">
+        <h3>Ztpr</h3>
+        <ul>
+          <li><a href="getting-started.html">Getting Started</a></li>
+          <li><a href="user-guide.html">User Guide</a></li>
+          <li><a href="https://github.com/JTCozart/ZTPR/releases">Releases</a></li>
+          <li><a href="https://github.com/JTCozart/ZTPR/blob/master/NOTICE">Notices</a></li>
+          <li><a href="https://linktr.ee/jtczrt">Linktree</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Cozart Consulting">
+        <h3>Cozart Consulting</h3>
+        <ul>
+          <li><a href="https://cozartconsulting.com/">Custom software</a></li>
+          <li><a href="https://cozartconsulting.com/#work">More projects</a></li>
+          <li><a href="https://github.com/JTCozart">GitHub</a></li>
+          <li><a href="https://cozartconsulting.com/#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; <span id="year">2026</span> Ztpr. Designed and built by <a href="https://cozartconsulting.com/">Cozart Consulting</a>, Knoxville, TN.</span>
+      <span class="theme-credit">Theme adapted from <a href="https://www.figma.com/community/file/1479561357645494407">Housefix</a> by Al Razi Siam, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</span>
+    </div>
   </div>
 </footer>
 
 <script>
-  // Mobile nav toggle
   (function () {
-    var toggle = document.querySelector('.nav-toggle');
-    var menu   = document.querySelector('.nav-mobile');
-    if (!toggle || !menu) return;
+    var toggle = document.getElementById('navToggle');
+    var links = document.getElementById('navLinks');
+    if (!toggle || !links) return;
     toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open);
-      toggle.querySelector('i').className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+      var open = links.classList.toggle('open');
+      toggle.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
-    document.addEventListener('click', function (e) {
-      if (!e.target.closest('nav')) {
-        menu.classList.remove('open');
+    links.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        links.classList.remove('open');
+        toggle.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
-        toggle.querySelector('i').className = 'fa-solid fa-bars';
-      }
+      });
     });
   })();
-
-  // Scroll-spy: highlight the TOC entry for the section currently in view.
-  (function () {
-    var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
-    var sections = links
-      .map(function (a) { return { link: a, el: document.getElementById(a.getAttribute('href').slice(1)) }; })
-      .filter(function (x) { return x.el; });
-    if (!('IntersectionObserver' in window) || sections.length === 0) return;
-
-    var visible = new Set();
-    function highlight() {
-      // Choose the first section (in document order) that is currently visible.
-      var current = sections.find(function (s) { return visible.has(s.el); }) || sections[0];
-      links.forEach(function (a) { a.classList.toggle('active', a === current.link); });
-    }
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) visible.add(e.target); else visible.delete(e.target);
-      });
-      highlight();
-    }, { rootMargin: '-80px 0px -65% 0px', threshold: 0 });
-
-    sections.forEach(function (s) { observer.observe(s.el); });
-  })();
+  document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
