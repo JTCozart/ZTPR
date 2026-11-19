@@ -59,3 +59,6 @@ h1, h2, h3, h4 { font-family: var(--mk-font-heading); color: var(--mk-navy); let
 .next a { border-radius: var(--mk-radius); }
 pre { border-radius: var(--mk-radius); background: var(--mk-ink); }
 code { border-radius: 3px; }
+
+/* Centred hero: the theme caps the heading width, so centre that box too */
+.hero h1 { margin-left: auto; margin-right: auto; }
